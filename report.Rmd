@@ -11,6 +11,9 @@ output:
     toc_depth: 2
     number_sections: false
 toc-title: Contents
+resources_files:
+  -"unhcr-generic-fonts.css"
+  -"cover_placeholder.jpg"
 ---
 
 \newpage
