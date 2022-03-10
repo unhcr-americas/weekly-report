@@ -5,15 +5,12 @@ date: Regional Bureau for the Americas
 output: 
   pagedown::html_paged:
     css: ["unhcr-generic-fonts.css", "unhcr-generic-page.css", "unhcr-generic.css"]
-    front_cover: cover_placeholder.jpg
+    front_cover: cover_grey.jpg
     back_cover: unhcr-backcover.svg
     toc: true
     toc_depth: 2
     number_sections: false
 toc-title: Contents
-resources_files:
-  -"unhcr-generic-fonts.css"
-  -"cover_placeholder.jpg"
 ---
 
 \newpage
