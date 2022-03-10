@@ -136,11 +136,11 @@ walk(levels(fct_drop(data$region)), ~render_region(data, .))
 For more information please contact:
 
 ::: {.back-contact}
-[Sonia Aguilar]{.back-name}
+[Vanessa Villalibre]{.back-name}
 
 Reporting Officer
 
-[aguilars@unhcr.org](mailto:aguilars@unhcr.org)
+[villalib@unhcr.org](mailto:villalib@unhcr.org)
 :::
 
 ::: {.back-contact}
