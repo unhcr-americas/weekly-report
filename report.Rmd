@@ -133,11 +133,11 @@ walk(levels(fct_drop(data$region)), ~render_region(data, .))
 For more information please contact:
 
 ::: {.back-contact}
-[Vanessa Villalibre]{.back-name}
+[Carla Calvo Manosa]{.back-name}
 
 Reporting Officer
 
-[villalib@unhcr.org](mailto:villalib@unhcr.org)
+[calvoc@unhcr.org](mailto:calvoc@unhcr.org)
 :::
 
 ::: {.back-contact}
