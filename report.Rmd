@@ -34,7 +34,7 @@ data <-
 
 data <- 
   data %>% 
-  filter(is.na(exreport) | exreport=="" | exreport=="no") %>% # remove extraordinary reports from the dataset
+  filter(is.na(`grRepOp/exReport`) | `grRepOp/exReport`=="" | `grRepOp/exReport`=="no") %>% # remove extraordinary reports from the dataset
   select(id = `_id`,
          year = `_submission_time`,
          week = `grRepOp/week`,
