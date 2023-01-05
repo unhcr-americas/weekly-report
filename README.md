@@ -30,9 +30,15 @@ devtools::install_github("rstudio/rsconnect")
 
 ```
 
-Basically in a first chunk the report pull the data from kobo API, then 3 functions are created to parse the data and according to sub-region, country and section. Data are then filtered for the specific reporting week and then a last function (`purr::walk(levels(fct_drop(datanow$region)), ~render_region(datanow, .))` - see [doc](https://purrr.tidyverse.org/reference/map.html) ) is used to loo around the content.
+Basically in a first chunk the report pull the data from kobo API and some basic reshaping are performed, then 3 functions are created to parse the data and according to sub-region(`render_region`)), country(`render_country`) and section (`render_section`). Data are then filtered for the specific reporting week and then a last function (`purr::walk(levels(fct_drop(datanow$region)), ~render_region(datanow, .))` - see [doc](https://purrr.tidyverse.org/reference/map.html) ) is used to loop around the content.
 
 
+The front cover image cover (default is `cover_grey.jpg`) can be changed as required. The best source of image is [UNHCR media library](http://media.unhcr.org).
+
+```
+    front_img: cover_grey.jpg
+    
+```
 
 ## Automation of Report Generation
 

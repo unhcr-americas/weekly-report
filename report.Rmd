@@ -5,10 +5,7 @@ date: Regional Bureau for the Americas
 author:
   - name: Carla Calvo Manosa
     affiliation: Reporting Officer
-    email: calvoc@unhcr.org
-  - name: Carmen Asenjo
-    affiliation: Information Management Officer
-    email: asenjo@unhcr.org
+    email: alvoc@unhcr.org
 output:
   unhcrdown::paged_report:
     # put the path to your cover image
@@ -43,7 +40,6 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
 library(tidyverse)
 library(lubridate)
 library(httr)
-
 #knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ```
@@ -148,8 +144,6 @@ render_region <- function(data, .region) {
 ```
 
 ```{r datafilter}
-
- 
 ## If generated for report happening after this current week
 # isoweek(ymd("2012-03-26"))
 
@@ -167,13 +161,17 @@ if(isoweek(today()) == 1 ) {
 #             filter(duplicated(country, section) | n()==1) |>
 #             ungroup()
 
-datanow <- datanow [!duplicated(datanow[c(4,5)]),]
+datanow2 <- datanow [!duplicated(datanow[c(4,5)]),]
 
 ```
 
 
 ```{r pipeline, results='asis'}
-walk(levels(fct_drop(datanow$region)), ~render_region(datanow, .))
+purrr::walk(levels(fct_drop(datanow2$region)), ~render_region(datanow2, .))
 ```
 
 
+```{r}
+if( nrow(datanow2) < nrow(datanow)) { cat("Warning: it seems duplicated report were send to the server. Revise the data in the server")}
+
+```
