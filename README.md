@@ -113,3 +113,41 @@ et voila...
 
 
 
+----
+
+## Todo: automate email notification with  Blastula
+
+see documentation here: https://posit.co/blog/emails-from-r-blastula-0-3/ 
+
+In order to implement this, a request to UNHCR ICT admin is required so that email can be send over API.
+
+
+```{r} 
+install.packages("blastula")
+install.packages("Microsoft365R")
+## see some doc here - blastula::prepare_rsc_example_files()
+
+library(Microsoft365R)
+outlb <- get_business_outlook()
+
+# compose an email with blastula
+library(blastula)
+bl_body <- "## Hello!
+Please find attached the weekly report for the Region."
+
+bl_em <- compose_email(
+    body=md(bl_body),
+    footer=md("UNHCR Reporting Unit")
+)
+em <- outl$create_email(bl_em, 
+                        subject="Weekly Report",
+                        to="diffusion-list@unhcr.org")
+
+# add an attachment and send it
+em$add_attachment("report.html")
+em$send()
+
+```
+
+
+
