@@ -30,7 +30,19 @@ devtools::install_github("rstudio/rsconnect")
 
 ```
 
-Basically in a first chunk the report pull the data from kobo API and some basic reshaping are performed, then 3 functions are created to parse the data and according to sub-region(`render_region`)), country(`render_country`) and section (`render_section`). Data are then filtered for the specific reporting week and then a last function (`purr::walk(levels(fct_drop(datanow$region)), ~render_region(datanow, .))` - see [doc](https://purrr.tidyverse.org/reference/map.html) ) is used to loop around the content.
+You will also need to add to your `.Renviron`, your kobotoolbox token `KOBO_API_KEY=xxxmytokenxxxx`. The .Renviron file is a way to store sensitive information such as passwords or API keys. All the information in these files are stored as environment variables and are enabled when you start a session. It’s a common thing in computer science: a value pair usually set outside the program, often built into the operating system. You edit direcly this file with 
+
+```{r}
+usethis::edit_r_environ()
+
+```
+
+
+Basically the report works as follows: 
+ * in a first chunk the report pull the data from kobo API, using the token that was just set up and 
+ * some basic reshaping are performed.  
+ * then 3 functions are created to parse the data and according to sub-region(`render_region`)), country(`render_country`) and section (`render_section`). 
+ * Data are then filtered for the specific reporting week and then a last function (`purr::walk(levels(fct_drop(datanow$region)), ~render_region(datanow, .))` - see [doc](https://purrr.tidyverse.org/reference/map.html) ) is used to loop around the content. 
 
 
 The front cover image cover (default is `cover_grey.jpg`) can be changed as required. The best source of image is [UNHCR media library](http://media.unhcr.org).
