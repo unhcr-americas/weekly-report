@@ -61,7 +61,7 @@ rsconnect::writeManifest(appPrimaryDoc = "report.Rmd")
 
 ### Step 2 -  Publish the report to Rstudio Connect from Github
 
-Got to UNHCR Rstudio server - [http://rstudio.unhcr.org](http://rstudio.unhcr.org) - you need first to have a license associated to your account - Contact Global Data Service Data Science team for that.
+Go to UNHCR Rstudio server - [http://rstudio.unhcr.org](http://rstudio.unhcr.org) - you need first to have a license associated to your account - Contact Global Data Service Data Science team for that.
  
 ![ ](https://raw.githubusercontent.com/unhcr-americas/weekly-report/main/inst/fromGit.png) 
 
