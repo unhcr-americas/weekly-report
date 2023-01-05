@@ -1,12 +1,12 @@
 # Weekly Report Automation
 
 
-This repository includes material to automate weekly reporting from all countries to the bureau. It compiles information from each operation based on predefined structure within a single report.
+This repository includes material to automate weekly reporting from all countries to the bureau. It compiles information from each operation in the region based on predefined structure within a single report.
 
 
 ## Form
 
-An xlsform questionnaire is used in Kobo - [`xlsform.xlsx`](https://github.com/unhcr-americas/weekly-report/raw/main/xlsform.xlsx). You can see a preview/demo of the form - __this is NOT the production /official FORM__ here: https://enketo.unhcr.org/single/6o7btvE1 
+An [xlsform questionnaire](http://xlsform.org) is used in [Kobotoolbox server](http://kobo.unhcr.org) - [`xlsform.xlsx`](https://github.com/unhcr-americas/weekly-report/raw/main/xlsform.xlsx). You can see a preview/demo of the form - __this is NOT the production /official FORM__ here: https://enketo.unhcr.org/single/6o7btvE1 
 
 
 ## Report Template
@@ -87,7 +87,6 @@ You need now to set up the kobotoolbox authentication token within the Rstudio s
 
 et voila...
 
-![ ](https://raw.githubusercontent.com/unhcr-americas/weekly-report/main/inst/fromGit8.png)
 
 
 ### Step 5 -  Use power automate to forward automatically the email with the report to the data supervisor
