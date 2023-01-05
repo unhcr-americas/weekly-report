@@ -121,6 +121,8 @@ see documentation here: https://posit.co/blog/emails-from-r-blastula-0-3/
 
 In order to implement this, a request to UNHCR ICT admin is required so that email can be send over API.
 
+Further exploration is required to ensure token authenciation - see https://cran.r-project.org/web/packages/Microsoft365R/vignettes/auth.html 
+
 
 ```{r} 
 install.packages("blastula")
@@ -128,6 +130,13 @@ install.packages("Microsoft365R")
 ## see some doc here - blastula::prepare_rsc_example_files()
 
 library(Microsoft365R)
+
+# The AzureR packages can save your authentication credentials in a directory
+# This saves you having to re-authenticate with Azure in future sessions. 
+# Create this directory? (Yes/no/cancel) 
+
+## note that you will get here a token to be re-used afterward..
+
 outlb <- get_business_outlook()
 
 # compose an email with blastula
