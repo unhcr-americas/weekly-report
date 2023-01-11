@@ -3620,6 +3620,67 @@
         "Built": "R 4.2.2; ; 2022-11-06 00:51:18 UTC; windows"
       }
     },
+    "showtext": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com/",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Package": "showtext",
+        "Type": "Package",
+        "Title": "Using Fonts More Easily in R Graphs",
+        "Version": "0.9-5",
+        "Date": "2022-02-09",
+        "Author": "Yixuan Qiu and authors/contributors of the\n    included software. See file AUTHORS for details.",
+        "Maintainer": "Yixuan Qiu <yixuan.qiu@cos.name>",
+        "Description": "Making it easy to use various types of fonts ('TrueType',\n    'OpenType', Type 1, web fonts, etc.) in R graphs, and supporting most output\n    formats of R graphics including PNG, PDF and SVG. Text glyphs will be converted\n    into polygons or raster images, hence after the plot has been created, it no\n    longer relies on the font files. No external software such as 'Ghostscript' is\n    needed to use this package.",
+        "Depends": "sysfonts (>= 0.7.1), showtextdb (>= 2.0)",
+        "Imports": "grDevices",
+        "Suggests": "knitr, rmarkdown, prettydoc, curl, jsonlite",
+        "SystemRequirements": "zlib, libpng, FreeType",
+        "URL": "https://github.com/yixuan/showtext",
+        "BugReports": "https://github.com/yixuan/showtext/issues",
+        "License": "Apache License (>= 2.0)",
+        "Copyright": "see file COPYRIGHTS",
+        "VignetteBuilder": "knitr, rmarkdown",
+        "RoxygenNote": "7.1.2",
+        "NeedsCompilation": "yes",
+        "Packaged": "2022-02-09 15:33:43 UTC; qyx",
+        "Repository": "CRAN",
+        "Date/Publication": "2022-02-09 16:30:02 UTC",
+        "Built": "R 4.1.2; x86_64-w64-mingw32; 2022-03-01 01:02:31 UTC; windows"
+      }
+    },
+    "showtextdb": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com/",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Package": "showtextdb",
+        "Type": "Package",
+        "Title": "Font Files for the 'showtext' Package",
+        "Version": "3.0",
+        "Date": "2020-05-31",
+        "Author": "Yixuan Qiu and authors/contributors of the included fonts. See file\n    AUTHORS for details.",
+        "Maintainer": "Yixuan Qiu <yixuan.qiu@cos.name>",
+        "Description": "Providing font files that can be used by the 'showtext' package.",
+        "Imports": "sysfonts (>= 0.7), utils",
+        "Suggests": "curl",
+        "License": "Apache License (>= 2.0)",
+        "Copyright": "see file COPYRIGHTS",
+        "RoxygenNote": "7.1.0",
+        "NeedsCompilation": "no",
+        "Packaged": "2020-06-04 04:05:01 UTC; qyx",
+        "Repository": "CRAN",
+        "Date/Publication": "2020-06-04 08:10:02 UTC",
+        "Built": "R 4.1.2; ; 2022-02-28 22:50:02 UTC; windows"
+      }
+    },
     "stringi": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com/",
@@ -3719,6 +3780,36 @@
         "Built": "R 4.2.1; x86_64-w64-mingw32; 2022-10-18 22:43:51 UTC; windows",
         "ExperimentalWindowsRuntime": "ucrt",
         "Archs": "x64"
+      }
+    },
+    "sysfonts": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com/",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
+      "description": {
+        "Package": "sysfonts",
+        "Type": "Package",
+        "Title": "Loading Fonts into R",
+        "Version": "0.8.8",
+        "Date": "2022-03-13",
+        "Author": "Yixuan Qiu and authors/contributors of the\n    included fonts. See file AUTHORS for details.",
+        "Maintainer": "Yixuan Qiu <yixuan.qiu@cos.name>",
+        "Description": "Loading system fonts and Google Fonts\n    <https://fonts.google.com/> into R, in order to\n    support other packages such as 'R2SWF' and 'showtext'.",
+        "Suggests": "curl, jsonlite",
+        "Copyright": "see file COPYRIGHTS",
+        "SystemRequirements": "zlib, libpng, FreeType",
+        "URL": "https://github.com/yixuan/sysfonts",
+        "BugReports": "https://github.com/yixuan/sysfonts/issues",
+        "License": "GPL-2",
+        "RoxygenNote": "7.1.2",
+        "NeedsCompilation": "yes",
+        "Packaged": "2022-03-13 12:44:14 UTC; qyx",
+        "Repository": "CRAN",
+        "Date/Publication": "2022-03-13 13:40:02 UTC",
+        "Built": "R 4.1.2; x86_64-w64-mingw32; 2022-03-14 13:52:43 UTC; windows"
       }
     },
     "systemfonts": {
@@ -4650,7 +4741,7 @@
       "checksum": "6398e26ccc140d3499300b29662714dc"
     },
     "report.Rmd": {
-      "checksum": "da34982d6b8cdf84c2fe313101a59623"
+      "checksum": "4eae1c4ac6618a39c9dbf2a0af90a651"
     },
     "xlsform.xlsx": {
       "checksum": "516c8a0c19dff08467fa62896d63b329"
