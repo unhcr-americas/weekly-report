@@ -40,6 +40,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
 library(tidyverse)
 library(lubridate)
 library(httr)
+library(ragg)
 #knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ```
