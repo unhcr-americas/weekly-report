@@ -4223,10 +4223,10 @@
         "GithubRef": "HEAD",
         "GithubSHA1": "55d4f56a226b2d96b221f0c5ee5948f964e46bbc",
         "NeedsCompilation": "no",
-        "Packaged": "2022-09-20 15:58:00 UTC; MATHEUS",
+        "Packaged": "2023-01-11 20:59:10 UTC; MATHEUS",
         "Author": "Cedric Vidonne [aut, cre],\n  Ahmadou Dicko [aut],\n  Edouard Legoupil [aut],\n  UNHCR [cph]",
         "Maintainer": "Cedric Vidonne <vidonne@unhcr.org>",
-        "Built": "R 4.2.1; ; 2022-09-20 15:58:02 UTC; windows"
+        "Built": "R 4.2.2; ; 2023-01-11 20:59:12 UTC; windows"
       }
     },
     "urltools": {
@@ -4738,7 +4738,7 @@
       "checksum": "7b07170a08080194117a4580f265785e"
     },
     "report.html": {
-      "checksum": "6398e26ccc140d3499300b29662714dc"
+      "checksum": "2040d753eae4fd71e72754d888c1421b"
     },
     "report.Rmd": {
       "checksum": "4eae1c4ac6618a39c9dbf2a0af90a651"
