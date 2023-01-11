@@ -4714,7 +4714,7 @@
       "checksum": "f10960e00da68ca949965cd257cddec9"
     },
     "cover_grey.svg": {
-      "checksum": "ca018eb598c6278d11c9380fed270aef"
+      "checksum": "a3c57ebabbfa9df7328d17c61b7fda8a"
     },
     "inst/fromGit.png": {
       "checksum": "240438720ddd7a60a7806ce55848a3bf"
@@ -4741,16 +4741,10 @@
       "checksum": "7b07170a08080194117a4580f265785e"
     },
     "report.html": {
-      "checksum": "3d136b451f4483114d32700b81a7eea3"
+      "checksum": "7aa00a50b061b385d6a31db78cc3166e"
     },
     "report.Rmd": {
       "checksum": "ce670468e42ba8235e2e2a6cc5f6695e"
-    },
-    "test/report - not working.html": {
-      "checksum": "abc60842cb19ba886251f2130781299c"
-    },
-    "test/report - working.html": {
-      "checksum": "ed7930a1b9316f168cde23703d4e7526"
     },
     "xlsform.xlsx": {
       "checksum": "516c8a0c19dff08467fa62896d63b329"
