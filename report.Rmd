@@ -123,7 +123,7 @@ data <-
 render_section <- function(data, .section) {
   cat(glue::glue("### {.section}"), sep = "\n")
   data <- data %>% filter(section == .section)
-  if (!is.na(data$confidential) & data$confidential == "yes")
+  if (any(!is.na(data$confidential) & data$confidential == "yes"))
     cat("<strong style='color: #EF4A60'>CONFIDENTIAL</strong>", sep = "\n")
   cat("\n")
   cat(data$narrative, sep = "\n")
