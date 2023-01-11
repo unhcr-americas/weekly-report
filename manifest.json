@@ -4738,10 +4738,13 @@
       "checksum": "7b07170a08080194117a4580f265785e"
     },
     "report.html": {
-      "checksum": "ed7930a1b9316f168cde23703d4e7526"
+      "checksum": "32683f0444574281bfe0669b83176c20"
     },
     "report.Rmd": {
-      "checksum": "04708ec27bc4826e456d500c897fa792"
+      "checksum": "afdb876cf5a1bf4d651e4554d8cf0da0"
+    },
+    "test/report - Copy.html": {
+      "checksum": "ed7930a1b9316f168cde23703d4e7526"
     },
     "xlsform.xlsx": {
       "checksum": "516c8a0c19dff08467fa62896d63b329"
