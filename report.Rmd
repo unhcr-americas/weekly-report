@@ -9,7 +9,7 @@ author:
 output:
   unhcrdown::paged_report:
     # put the path to your cover image
-    front_img: "https://raw.githubusercontent.com/unhcr-americas/weekly-report/main/cover_grey.jpg"
+    front_img: cover_grey.svg
     img_to_dark: false
 # Set  toc title, default none
 toc-title: Contents

@@ -4713,6 +4713,9 @@
     "cover_grey.jpg": {
       "checksum": "f10960e00da68ca949965cd257cddec9"
     },
+    "cover_grey.svg": {
+      "checksum": "ca018eb598c6278d11c9380fed270aef"
+    },
     "inst/fromGit.png": {
       "checksum": "240438720ddd7a60a7806ce55848a3bf"
     },
@@ -4738,12 +4741,15 @@
       "checksum": "7b07170a08080194117a4580f265785e"
     },
     "report.html": {
-      "checksum": "32683f0444574281bfe0669b83176c20"
+      "checksum": "3d136b451f4483114d32700b81a7eea3"
     },
     "report.Rmd": {
-      "checksum": "afdb876cf5a1bf4d651e4554d8cf0da0"
+      "checksum": "ce670468e42ba8235e2e2a6cc5f6695e"
     },
-    "test/report - Copy.html": {
+    "test/report - not working.html": {
+      "checksum": "abc60842cb19ba886251f2130781299c"
+    },
+    "test/report - working.html": {
       "checksum": "ed7930a1b9316f168cde23703d4e7526"
     },
     "xlsform.xlsx": {
