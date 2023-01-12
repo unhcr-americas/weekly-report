@@ -1,6 +1,6 @@
 ---
 title: Americas Weekly Highlights
-subtitle: WEEK `r if( lubridate::isoweek(lubridate::today()) == 1) { 52} else { lubridate::isoweek(lubridate::today())-1 }  `/2022
+subtitle: WEEK `r if( lubridate::isoweek(lubridate::today()) == 1) {52} else { lubridate::isoweek(lubridate::today())-1 }  `/`r lubridate::year(lubridate::today())`
 date: Regional Bureau for the Americas
 author:
   - name: Carla Calvo Manosa
@@ -9,8 +9,8 @@ author:
 output:
   unhcrdown::paged_report:
     # put the path to your cover image
-    front_img: "https://raw.githubusercontent.com/unhcr-americas/weekly-report/main/cover_grey.svg"
-    img_to_dark: false
+    front_img: ""
+    # img_to_dark: false
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
