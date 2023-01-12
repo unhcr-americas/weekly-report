@@ -9,8 +9,8 @@ author:
 output:
   unhcrdown::paged_report:
     # put the path to your cover image
-    front_img: ""
-    # img_to_dark: false
+    front_img: cover_grey.svg
+    img_to_dark: false
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
@@ -42,6 +42,7 @@ library(lubridate)
 library(httr)
 library(ragg)
 library(showtext)
+library(unhcrdesign)
 #knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ```
