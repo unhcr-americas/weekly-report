@@ -11,6 +11,7 @@ output:
     # put the path to your cover image
     front_img: cover_grey.svg
     img_to_dark: false
+    self_contained: true
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
