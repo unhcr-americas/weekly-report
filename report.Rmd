@@ -7,11 +7,12 @@ author:
     affiliation: Reporting Officer
     email: alvoc@unhcr.org
 output:
-  unhcrdown::paged_report:
+  pagedown::html_paged:
     # put the path to your cover image
-    front_img: cover_grey.svg
-    img_to_dark: false
-    self_contained: true
+    front_cover: cover_grey.svg
+    css: resources/paged.css
+    includes:
+        after_body: resources/back_paged.html
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
@@ -28,7 +29,7 @@ loa-title: "Acronyms"
 paged-footnotes: true
 links-to-footnotes: true
 # uncomment this line to produce HTML and PDF in RStudio:
-#knit: pagedown::chrome_print
+# knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}

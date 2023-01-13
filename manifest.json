@@ -915,7 +915,7 @@
         "Package": "curl",
         "Type": "Package",
         "Title": "A Modern and Flexible Web Client for R",
-        "Version": "4.3.3",
+        "Version": "5.0.0",
         "Authors@R": "c(\n    person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroen@berkeley.edu\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", role = \"ctb\"),\n    person(\"RStudio\", role = \"cph\")\n    )",
         "Description": "The curl() and curl_download() functions provide highly\n    configurable drop-in replacements for base url() and download.file() with\n    better performance, support for encryption (https, ftps), gzip compression,\n    authentication, and other 'libcurl' goodies. The core of the package implements a\n    framework for performing fully customized requests where data can be processed\n    either in memory, on disk, or streaming via the callback or connection\n    interfaces. Some knowledge of 'libcurl' is recommended; for a more-user-friendly\n    web client see the 'httr' package which builds on this package with http\n    specific tools and logic.",
         "License": "MIT + file LICENSE",
@@ -925,16 +925,16 @@
         "Suggests": "spelling, testthat (>= 1.0.0), knitr, jsonlite, rmarkdown,\nmagrittr, httpuv (>= 1.4.4), webutils",
         "VignetteBuilder": "knitr",
         "Depends": "R (>= 3.0.0)",
-        "RoxygenNote": "7.1.2",
+        "RoxygenNote": "7.2.1",
         "Encoding": "UTF-8",
         "Language": "en-US",
         "NeedsCompilation": "yes",
-        "Packaged": "2022-10-06 17:34:42 UTC; jeroen",
+        "Packaged": "2023-01-12 13:33:22 UTC; jeroen",
         "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Hadley Wickham [ctb],\n  RStudio [cph]",
         "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
         "Repository": "CRAN",
-        "Date/Publication": "2022-10-06 21:30:02 UTC",
-        "Built": "R 4.2.1; x86_64-w64-mingw32; 2022-10-07 13:45:33 UTC; windows",
+        "Date/Publication": "2023-01-12 18:10:01 UTC",
+        "Built": "R 4.2.2; x86_64-w64-mingw32; 2023-01-13 14:06:28 UTC; windows",
         "ExperimentalWindowsRuntime": "ucrt",
         "Archs": "x64"
       }
@@ -1399,36 +1399,6 @@
         "Repository": "CRAN",
         "Date/Publication": "2022-09-08 03:02:54 UTC",
         "Built": "R 4.2.1; ; 2022-09-08 14:05:34 UTC; windows"
-      }
-    },
-    "gdtools": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "gdtools",
-        "Version": "0.2.4",
-        "License": "GPL-3 | file LICENSE",
-        "Title": "Utilities for Graphical Rendering",
-        "Description": "Useful tools for writing vector graphics devices.",
-        "Authors@R": "c(\n    person(\"David\", \"Gohel\", , \"david.gohel@ardata.fr\", c(\"aut\", \"cre\")),\n    person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", \"aut\"),\n    person(\"Lionel\", \"Henry\", , \"lionel@rstudio.com\", \"aut\"),\n    person(\"Jeroen\", \"Ooms\", role = \"aut\", email = \"jeroen@berkeley.edu\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Yixuan\", \"Qiu\", role = \"ctb\"),\n    person(\"R Core Team\", role = \"cph\", comment = \"Cairo code from X11 device\"),\n    person(\"RStudio\", role = \"cph\")\n  )",
-        "Imports": "Rcpp (>= 0.12.12), systemfonts (>= 0.1.1)",
-        "Suggests": "htmltools, testthat, fontquiver (>= 0.2.0), curl",
-        "Encoding": "UTF-8",
-        "LinkingTo": "Rcpp",
-        "SystemRequirements": "cairo, freetype2, fontconfig",
-        "BugReports": "https://github.com/davidgohel/gdtools/issues",
-        "RoxygenNote": "7.1.2",
-        "NeedsCompilation": "yes",
-        "Packaged": "2022-01-31 11:41:21 UTC; davidgohel",
-        "Author": "David Gohel [aut, cre],\n  Hadley Wickham [aut],\n  Lionel Henry [aut],\n  Jeroen Ooms [aut] (<https://orcid.org/0000-0002-4035-0289>),\n  Yixuan Qiu [ctb],\n  R Core Team [cph] (Cairo code from X11 device),\n  RStudio [cph]",
-        "Maintainer": "David Gohel <david.gohel@ardata.fr>",
-        "Repository": "CRAN",
-        "Date/Publication": "2022-02-14 18:20:02 UTC",
-        "Built": "R 4.1.3; x86_64-w64-mingw32; 2022-03-21 18:47:54 UTC; windows"
       }
     },
     "generics": {
@@ -2368,40 +2338,6 @@
         "Archs": "x64"
       }
     },
-    "magick": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "magick",
-        "Type": "Package",
-        "Title": "Advanced Graphics and Image-Processing in R",
-        "Version": "2.7.3",
-        "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroen@berkeley.edu\",\n    comment = c(ORCID = \"0000-0002-4035-0289\"))",
-        "Description": "Bindings to 'ImageMagick': the most comprehensive open-source image\n    processing library available. Supports many common formats (png, jpeg, tiff,\n    pdf, etc) and manipulations (rotate, scale, crop, trim, flip, blur, etc).\n    All operations are vectorized via the Magick++ STL meaning they operate either\n    on a single frame or a series of frames for working with layers, collages,\n    or animation. In RStudio images are automatically previewed when printed to\n    the console, resulting in an interactive editing environment. The latest \n    version of the package includes a native graphics device for creating \n    in-memory graphics or drawing onto images using pixel coordinates.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://docs.ropensci.org/magick/ (website)\nhttps://github.com/ropensci/magick (devel)",
-        "BugReports": "https://github.com/ropensci/magick/issues",
-        "SystemRequirements": "ImageMagick++: ImageMagick-c++-devel (rpm) or\nlibmagick++-dev (deb)",
-        "VignetteBuilder": "knitr",
-        "Imports": "Rcpp (>= 0.12.12), magrittr, curl",
-        "LinkingTo": "Rcpp",
-        "Suggests": "av (>= 0.3), spelling, jsonlite, methods, knitr, rmarkdown,\nrsvg, webp, pdftools, ggplot2, gapminder, IRdisplay, tesseract\n(>= 2.0), gifski",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.1.1",
-        "Language": "en-US",
-        "NeedsCompilation": "yes",
-        "Packaged": "2021-08-18 07:27:22 UTC; jeroen",
-        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
-        "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
-        "Repository": "CRAN",
-        "Date/Publication": "2021-08-18 10:10:02 UTC",
-        "Built": "R 4.1.2; x86_64-w64-mingw32; 2022-03-05 22:28:13 UTC; windows"
-      }
-    },
     "magrittr": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com/",
@@ -2617,69 +2553,6 @@
         "Built": "R 4.2.2; x86_64-w64-mingw32; 2022-10-31 14:44:46 UTC; windows",
         "ExperimentalWindowsRuntime": "ucrt",
         "Archs": "x64"
-      }
-    },
-    "officedown": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "officedown",
-        "Type": "Package",
-        "Title": "Enhanced 'R Markdown' Format for 'Word' and 'PowerPoint'",
-        "Version": "0.3.0",
-        "Authors@R": "c(\n    person(\"David\", \"Gohel\", role = c(\"aut\", \"cre\", \"cph\"),\n    email = \"david.gohel@ardata.fr\"),\n    person(given = \"ArData\", role = \"cph\"),\n    person(given = \"Institut für Qualitätssicherung und Transparenz im Gesundheitswesen\", role = c(\"fnd\")),\n    person(\"Noam\", \"Ross\", role = c(\"aut\"), email = 'noam.ross@gmail.com', \n    comment = \"rmarkdown implementation for rvg\"),\n    person(given = \"ArData\", role = \"cph\"),\n    person(\"Martin\", \"Camitz\", role = c(\"ctb\"), email = 'martin.camitz@gmail.com') \n    )",
-        "Description": "Allows production of 'Microsoft' corporate documents from 'R Markdown' by \n reusing formatting defined in 'Microsoft Word' documents. You can reuse table styles, \n list styles but also add column sections, landscape oriented pages. Table and image \n captions as well as cross-references are transformed into 'Microsoft Word' fields, \n allowing documents edition and merging without issue with references; the syntax \n conforms to the 'bookdown' cross-reference definition. Objects generated by \n the 'officer' package are also supported in the 'knitr' chunks. \n 'Microsoft PowerPoint' presentations also benefit from this as well as the \n ability to produce editable vector graphics in 'PowerPoint' and also to \n define placeholder where content is to be added.",
-        "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "Imports": "knitr, rmarkdown, officer (>= 0.5.1), xml2, rlang, uuid,\ngrDevices, yaml, utils, memoise, rvg (>= 0.2.2)",
-        "Suggests": "ggplot2, flextable (>= 0.7.0), bookdown (>= 0.13), testthat\n(>= 3.0.0), doconv (>= 0.3.0)",
-        "URL": "https://ardata-fr.github.io/officeverse/,\nhttps://davidgohel.github.io/officedown/",
-        "BugReports": "https://github.com/davidgohel/officedown/discussions",
-        "RoxygenNote": "7.2.3",
-        "SystemRequirements": "pandoc (>= 2.0) - http://pandoc.org",
-        "VignetteBuilder": "knitr",
-        "Config/testthat/edition": "3",
-        "NeedsCompilation": "no",
-        "Packaged": "2023-01-06 12:39:52 UTC; davidgohel",
-        "Author": "David Gohel [aut, cre, cph],\n  ArData [cph],\n  Institut für Qualitätssicherung und Transparenz im Gesundheitswesen\n    [fnd],\n  Noam Ross [aut] (rmarkdown implementation for rvg),\n  ArData [cph],\n  Martin Camitz [ctb]",
-        "Maintainer": "David Gohel <david.gohel@ardata.fr>",
-        "Repository": "CRAN",
-        "Date/Publication": "2023-01-06 16:20:02 UTC",
-        "Built": "R 4.2.2; ; 2023-01-08 00:58:20 UTC; windows"
-      }
-    },
-    "officer": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "officer",
-        "Type": "Package",
-        "Title": "Manipulation of Microsoft Word and PowerPoint Documents",
-        "Version": "0.5.1",
-        "Authors@R": "c(\n    person(\"David\", \"Gohel\", role = c(\"aut\", \"cre\"),\n    email = \"david.gohel@ardata.fr\"),\n    person(given = \"ArData\", role = \"cph\"),\n    person(\"Frank\", \"Hangler\", role = \"ctb\", email = \"frank@plotandscatter.com\", comment = \"function body_replace_all_text\"),\n    person(\"Liz\", \"Sander\", role = \"ctb\", email = 'lsander@civisanalytics.com', comment = \"several documentation fixes\"),\n    person(\"Anton\", \"Victorson\", role = \"ctb\", email = 'anton@victorson.se',comment = \"fixes xml structures\"),\n    person(\"Jon\", \"Calder\", role = \"ctb\", email = 'jonmcalder@gmail.com', comment = \"update vignettes\"),\n    person(\"John\", \"Harrold\", role = \"ctb\", email = 'john.m.harrold@gmail.com', comment = \"function annotate_base\"),\n    person(\"John\", \"Muschelli\", role = \"ctb\", email = 'muschellij2@gmail.com', comment = \"google doc compatibility\"),\n    person(\"Bill\", \"Denney\", email=\"wdenney@humanpredictions.com\", role=\"ctb\", comment=c(ORCID=\"0000-0002-5759-428X\", \"function as.matrix.rpptx\")),\n    person(\"Nikolai\", \"Beck\", role = \"ctb\", email = 'beck.nikolai@gmail.com', comment = \"set speaker notes for .pptx documents\"),\n    person(\"Stefan\", \"Moog\", role = \"ctb\", email = 'moogs@gmx.de', comment = \"added functionality to set shape geometry and outline\"),\n    person(\"Greg\", \"Leleu\", role = \"ctb\", email = 'gregoire.leleu@gmail.com', comment = \"fields functionality in ppt\"),\n    person(\"Hongyuan\", \"Jia\", role = \"ctb\", email = \"hongyuanjia@cqust.edu.cn\", comment = c(ORCID = \"0000-0002-0075-8183\"))\n    )",
-        "Description": "Access and manipulate 'Microsoft Word' and 'Microsoft PowerPoint' documents from R. \n  The package focuses on tabular and graphical reporting from R; it also provides two functions\n  that let users get document content into data objects. A set of functions \n  lets add and remove images, tables and paragraphs of text in new or existing documents. \n  The package does not require any installation of Microsoft products to be able to write Microsoft \n  files.",
-        "License": "MIT + file LICENSE",
-        "Imports": "grDevices, stats, graphics, utils, zip (>= 2.1.0), uuid (>=\n0.1-4), xml2 (>= 1.1.0), openssl, R6",
-        "URL": "https://ardata-fr.github.io/officeverse/,\nhttps://davidgohel.github.io/officer/",
-        "Encoding": "UTF-8",
-        "BugReports": "https://github.com/davidgohel/officer/discussions",
-        "RoxygenNote": "7.2.3",
-        "Suggests": "testthat, devEMF, ggplot2, rmarkdown, base64enc, doconv (>=\n0.3.0), knitr, rsvg",
-        "NeedsCompilation": "no",
-        "Packaged": "2023-01-05 23:03:50 UTC; davidgohel",
-        "Author": "David Gohel [aut, cre],\n  ArData [cph],\n  Frank Hangler [ctb] (function body_replace_all_text),\n  Liz Sander [ctb] (several documentation fixes),\n  Anton Victorson [ctb] (fixes xml structures),\n  Jon Calder [ctb] (update vignettes),\n  John Harrold [ctb] (function annotate_base),\n  John Muschelli [ctb] (google doc compatibility),\n  Bill Denney [ctb] (<https://orcid.org/0000-0002-5759-428X>, function\n    as.matrix.rpptx),\n  Nikolai Beck [ctb] (set speaker notes for .pptx documents),\n  Stefan Moog [ctb] (added functionality to set shape geometry and\n    outline),\n  Greg Leleu [ctb] (fields functionality in ppt),\n  Hongyuan Jia [ctb] (<https://orcid.org/0000-0002-0075-8183>)",
-        "Maintainer": "David Gohel <david.gohel@ardata.fr>",
-        "Repository": "CRAN",
-        "Date/Publication": "2023-01-06 10:00:16 UTC",
-        "Built": "R 4.2.2; ; 2023-01-06 15:44:24 UTC; windows"
       }
     },
     "openssl": {
@@ -3456,41 +3329,6 @@
         "Built": "R 4.2.1; ; 2022-08-20 23:53:27 UTC; windows"
       }
     },
-    "rvg": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "rvg",
-        "Type": "Package",
-        "Title": "R Graphics Devices for 'Office' Vector Graphics Output",
-        "Version": "0.3.2",
-        "Authors@R": "c(\n    person(\"David\", \"Gohel\", role = c(\"aut\", \"cre\"),\n      email = \"david.gohel@ardata.fr\"),\n    person(\"Bob\", \"Rudis\", role = c(\"ctb\"),\n      comment = \"the javascript code used by function set_attr\"),\n    person(\"Francois\", \"Brunetti\", role = c(\"ctb\"),\n      email = \"francois.brunetti@lysis-consultants.fr\",\n      comment = \"clipping algorithms\")\n    )",
-        "Description": "Vector Graphics devices for 'Microsoft PowerPoint' and \n 'Microsoft Excel'. Functions extending package 'officer' are provided to \n embed 'DrawingML' graphics into 'Microsoft PowerPoint' presentations and \n 'Microsoft Excel' workbooks.",
-        "SystemRequirements": "C++11, libpng",
-        "License": "GPL-3",
-        "Encoding": "UTF-8",
-        "Depends": "R (>= 3.0)",
-        "Imports": "grDevices, Rcpp (>= 0.12.12), officer (>= 0.5.1), gdtools (>=\n0.2.1), xml2 (>= 1.0.0), rlang",
-        "LinkingTo": "Rcpp, gdtools",
-        "Suggests": "testthat, grid",
-        "URL": "https://ardata-fr.github.io/officeverse/,\nhttps://davidgohel.github.io/rvg/",
-        "BugReports": "https://github.com/davidgohel/rvg/issues",
-        "RoxygenNote": "7.2.3",
-        "NeedsCompilation": "yes",
-        "Packaged": "2023-01-06 14:22:45 UTC; davidgohel",
-        "Author": "David Gohel [aut, cre],\n  Bob Rudis [ctb] (the javascript code used by function set_attr),\n  Francois Brunetti [ctb] (clipping algorithms)",
-        "Maintainer": "David Gohel <david.gohel@ardata.fr>",
-        "Repository": "CRAN",
-        "Date/Publication": "2023-01-07 15:30:07 UTC",
-        "Built": "R 4.2.2; x86_64-w64-mingw32; 2023-01-08 00:54:49 UTC; windows",
-        "ExperimentalWindowsRuntime": "ucrt",
-        "Archs": "x64"
-      }
-    },
     "sass": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com/",
@@ -4188,47 +4026,6 @@
         "Built": "R 4.2.0; ; 2022-05-04 14:50:39 UTC; windows"
       }
     },
-    "unhcrdown": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "unhcrdown",
-      "GithubUsername": "vidonne",
-      "GithubRef": "HEAD",
-      "GithubSha1": "55d4f56a226b2d96b221f0c5ee5948f964e46bbc",
-      "description": {
-        "Package": "unhcrdown",
-        "Title": "UNHCR Templates for R Markdown",
-        "Version": "0.0.4.9000",
-        "Authors@R": "\n    c(person(given = \"Cedric\",\n           family = \"Vidonne\",\n           role = c(\"aut\", \"cre\"),\n           email = \"vidonne@unhcr.org\"),\n      person(given = \"Ahmadou\",\n           family = \"Dicko\",\n           role = \"aut\",\n           email = \"mail@ahmadoudicko.com\"),\n      person(given = \"Edouard\",\n           family = \"Legoupil\",\n           role = \"aut\",\n           email = \"legoupil@unhcr.org\"),\n      person(family = \"UNHCR\",\n             role = \"cph\"))",
-        "Description": "Produce documents compliant with UNHCR brand identity.",
-        "License": "MIT + file LICENSE",
-        "Encoding": "UTF-8",
-        "Roxygen": "list(markdown = TRUE)",
-        "RoxygenNote": "7.2.1",
-        "Imports": "magick, pagedown, officedown, rmarkdown, officer, xaringan,\nunhcrdesign",
-        "URL": "https://github.com/vidonne/unhcrdown,\nhttps://vidonne.github.io/unhcrdown/",
-        "BugReports": "https://github.com/vidonne/unhcrdown/issues",
-        "Remotes": "vidonne/unhcrdesign",
-        "Suggests": "knitr, fontawesome",
-        "VignetteBuilder": "knitr",
-        "Config/Needs/website": "vidonne/unhcrtemplate",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteRepo": "unhcrdown",
-        "RemoteUsername": "vidonne",
-        "RemoteRef": "HEAD",
-        "RemoteSha": "55d4f56a226b2d96b221f0c5ee5948f964e46bbc",
-        "GithubRepo": "unhcrdown",
-        "GithubUsername": "vidonne",
-        "GithubRef": "HEAD",
-        "GithubSHA1": "55d4f56a226b2d96b221f0c5ee5948f964e46bbc",
-        "NeedsCompilation": "no",
-        "Packaged": "2023-01-11 20:59:10 UTC; MATHEUS",
-        "Author": "Cedric Vidonne [aut, cre],\n  Ahmadou Dicko [aut],\n  Edouard Legoupil [aut],\n  UNHCR [cph]",
-        "Maintainer": "Cedric Vidonne <vidonne@unhcr.org>",
-        "Built": "R 4.2.2; ; 2023-01-11 20:59:12 UTC; windows"
-      }
-    },
     "urltools": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com/",
@@ -4551,38 +4348,6 @@
         "Built": "R 4.1.2; ; 2022-03-04 18:25:54 UTC; windows"
       }
     },
-    "xaringan": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
-      "description": {
-        "Package": "xaringan",
-        "Type": "Package",
-        "Title": "Presentation Ninja",
-        "Version": "0.28",
-        "Authors@R": "c(\n    person(\"Yihui\", \"Xie\", role = c(\"aut\", \"cre\"), email = \"xie@yihui.name\", comment = c(ORCID = \"0000-0003-0645-5666\")),\n    # contributors ordered alphabetically below\n    person(\"Alessandro\", \"Gasparini\", role = \"ctb\", comment = c(ORCID = \"0000-0002-8319-7624\")),\n    person(\"Benjie\", \"Gillam\", role = \"ctb\"),\n    person(\"Claus Thorn\", \"Ekstrøm\", role = \"ctb\"),\n    person(\"Daniel\", \"Anderson\", role = \"ctb\"),\n    person(\"Dawei\", \"Lang\", role = \"ctb\"),\n    person(\"Deo\", \"Salil\", role = \"ctb\"),\n    person(\"Emi\", \"Tanaka\", role = \"ctb\"),\n    person(\"Garrick\", \"Aden-Buie\", role = \"ctb\", comment = c(ORCID = \"0000-0002-7111-0077\")),\n    person(\"Iñaki\", \"Ucar\", role = \"ctb\", comment = c(ORCID = \"0000-0001-6403-5550\")),\n    person(\"John\", \"Little\", role = \"ctb\"),\n    person(\"Joselyn\", \"Chávez\", role = \"ctb\", comment = c(ORCID = \"0000-0002-4974-4591\")),\n    person(\"Joseph\", \"Casillas\", role = \"ctb\"),\n    person(\"JooYoung\", \"Seo\", role = \"ctb\", comment = c(ORCID = \"0000-0002-4064-6012\")),\n    person(\"Lucy\", \"D'Agostino McGowan\", role = \"ctb\", comment = c(ORCID = \"0000-0001-7297-9359\")),\n    person(\"Malcolm\", \"Barrett\", role = \"ctb\", comment = c(ORCID = \"0000-0003-0299-5825\")),\n    person(c(\"Matthew\", \"Mark\"), \"Strasiotto\", role = \"ctb\", comment = c(github = \"mstr3336\")),\n    person(\"Michael Wayne\", \"Kearney\", role = \"ctb\"),\n    person(\"Nan-Hung\", \"Hsieh\", role = \"ctb\"),\n    person(\"Ole Petter\", \"Bang\", role = \"ctb\", comment = \"CSS in rmarkdown/templates/xaringan/resources/default.css\"),\n    person(\"Orlando\", \"Olaya Bucaro\", role = \"ctb\"),\n    person(\"Patrick\", \"Schratz\", role = \"ctb\"),\n    person(\"Paul\", \"Klemm\", role = \"ctb\", comment = c(ORCID = \"0000-0002-5985-1737\")),\n    person(\"Paul\", \"Lemmens\", role = \"ctb\"),\n    person(\"Robert\", \"Fromont\", role = \"ctb\", email = \"robert.fromont@canterbury.ac.nz\", comment = c(ORCID = \"0000-0001-5271-5487\")),\n    person(\"Sean\", \"Lopp\", role = \"ctb\"),\n    person(\"Silvia\", \"Canelon\", role = \"ctb\", comment = c(ORCID = \"0000-0003-1709-1394\")),\n    person(\"Susan\", \"VanderPlas\", role = \"ctb\", comment = c(ORCID = \"0000-0002-3803-0972\")),\n    person(\"Tuo\", \"Wang\", role = \"ctb\"),  \n    person(\"Waldir\", \"Leoncio\", role = \"ctb\", email = \"w.l.netto@medisin.uio.no\"),\n    person(\"Yongfu\", \"Liao\", role = \"ctb\"),\n    person(\"Yue\", \"Jiang\", role = \"ctb\", comment = c(ORCID = \"0000-0002-9798-5517\")),\n    person(c(\"Zhian\", \"N.\"), \"Kamvar\", role = c(\"ctb\"), email = \"zkamvar@gmail.com\", comment = c(ORCID = \"0000-0003-1458-7108\")),\n    person()\n    )",
-        "Description": "Create HTML5 slides with R Markdown and the JavaScript library\n    'remark.js' (<https://remarkjs.com>).",
-        "Depends": "R (>= 3.5.0)",
-        "Imports": "htmltools, knitr (>= 1.30), servr (>= 0.13), xfun (>= 0.18),\nrmarkdown (>= 2.8)",
-        "Suggests": "rstudioapi, testit",
-        "License": "MIT + file LICENSE",
-        "URL": "https://github.com/yihui/xaringan",
-        "BugReports": "https://github.com/yihui/xaringan/issues",
-        "VignetteBuilder": "knitr",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.2",
-        "NeedsCompilation": "no",
-        "Packaged": "2022-12-13 05:19:38 UTC; yihui",
-        "Author": "Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>),\n  Alessandro Gasparini [ctb] (<https://orcid.org/0000-0002-8319-7624>),\n  Benjie Gillam [ctb],\n  Claus Thorn Ekstrøm [ctb],\n  Daniel Anderson [ctb],\n  Dawei Lang [ctb],\n  Deo Salil [ctb],\n  Emi Tanaka [ctb],\n  Garrick Aden-Buie [ctb] (<https://orcid.org/0000-0002-7111-0077>),\n  Iñaki Ucar [ctb] (<https://orcid.org/0000-0001-6403-5550>),\n  John Little [ctb],\n  Joselyn Chávez [ctb] (<https://orcid.org/0000-0002-4974-4591>),\n  Joseph Casillas [ctb],\n  JooYoung Seo [ctb] (<https://orcid.org/0000-0002-4064-6012>),\n  Lucy D'Agostino McGowan [ctb] (<https://orcid.org/0000-0001-7297-9359>),\n  Malcolm Barrett [ctb] (<https://orcid.org/0000-0003-0299-5825>),\n  Matthew Mark Strasiotto [ctb] (mstr3336),\n  Michael Wayne Kearney [ctb],\n  Nan-Hung Hsieh [ctb],\n  Ole Petter Bang [ctb] (CSS in\n    rmarkdown/templates/xaringan/resources/default.css),\n  Orlando Olaya Bucaro [ctb],\n  Patrick Schratz [ctb],\n  Paul Klemm [ctb] (<https://orcid.org/0000-0002-5985-1737>),\n  Paul Lemmens [ctb],\n  Robert Fromont [ctb] (<https://orcid.org/0000-0001-5271-5487>),\n  Sean Lopp [ctb],\n  Silvia Canelon [ctb] (<https://orcid.org/0000-0003-1709-1394>),\n  Susan VanderPlas [ctb] (<https://orcid.org/0000-0002-3803-0972>),\n  Tuo Wang [ctb],\n  Waldir Leoncio [ctb],\n  Yongfu Liao [ctb],\n  Yue Jiang [ctb] (<https://orcid.org/0000-0002-9798-5517>),\n  Zhian N. Kamvar [ctb] (<https://orcid.org/0000-0003-1458-7108>)",
-        "Maintainer": "Yihui Xie <xie@yihui.name>",
-        "Repository": "CRAN",
-        "Date/Publication": "2022-12-13 05:40:02 UTC",
-        "Built": "R 4.2.2; ; 2022-12-13 19:56:26 UTC; windows"
-      }
-    },
     "xfun": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com/",
@@ -4741,10 +4506,34 @@
       "checksum": "7b07170a08080194117a4580f265785e"
     },
     "report.html": {
-      "checksum": "e74084e595eb5be31d8c2a2bda76ecd4"
+      "checksum": "36b69b9e2f41f1ff568cbaadd2d28ea3"
+    },
+    "report.pdf": {
+      "checksum": "6f1155d58105fefb141066850a7004dc"
     },
     "report.Rmd": {
-      "checksum": "aee12351c37b46dfb7bd79087907d708"
+      "checksum": "b4c0df01dfe47eb67818d811d5c86a8c"
+    },
+    "resources/back-cover.svg": {
+      "checksum": "8ad0c5d49649d7cd39772b8add8b2a64"
+    },
+    "resources/back_paged.html": {
+      "checksum": "df422ba4ed92d5d765714499890e9bb0"
+    },
+    "resources/header-ruler-left.svg": {
+      "checksum": "53b279a6a655a11648ec4da2a488e783"
+    },
+    "resources/header-ruler-right.svg": {
+      "checksum": "9ac6d2ad6a7b40c233fdfc494ed04847"
+    },
+    "resources/header-white-tick.svg": {
+      "checksum": "f7b487123a16be1723e0f62dd0e649f1"
+    },
+    "resources/paged.css": {
+      "checksum": "f3a5cd4254629557fa2ab3f609a7754c"
+    },
+    "resources/unhcr_logo_blue.svg": {
+      "checksum": "bb2e078fb0ef665509df437e89075320"
     },
     "xlsform.xlsx": {
       "checksum": "516c8a0c19dff08467fa62896d63b329"
