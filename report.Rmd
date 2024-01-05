@@ -1,6 +1,6 @@
 ---
 title: Americas Weekly Highlights
-subtitle: WEEK `r if( lubridate::isoweek(lubridate::today()) == 1) {52} else { lubridate::isoweek(lubridate::today())-1 }  `/`r lubridate::year(lubridate::today())`
+subtitle: WEEK `r lubridate::isoweek(lubridate::today()-lubridate::weeks(1))` / `r lubridate::isoyear(lubridate::today()-lubridate::weeks(1))`
 date: Regional Bureau for the Americas
 author:
   - name: Carla Calvo Manosa
@@ -84,8 +84,8 @@ data <-
 
 data <- 
   data %>% 
-  mutate(year = year(year),
-         week = parse_number(week)) %>%
+  mutate(week = parse_number(week),
+         year = isoyear(ymd_hms(year)-weeks(1))) %>%
   pivot_longer(-c(id, year, week, country), names_pattern = "(.+)\\.(.+)", names_to = c("section", "dimension")) %>% 
   pivot_wider(names_from = "dimension", values_from = "value")
 
@@ -152,13 +152,14 @@ render_region <- function(data, .region) {
 ## If generated for report happening after this current week
 # isoweek(ymd("2012-03-26"))
 
-if(isoweek(today()) == 1 ) {
-  ## If generated for report happening this current week
-  datanow <- data %>% filter(year == (isoyear(today()) - 1 ), week == 52)
-} else {
-  datanow <- data %>% filter(year == isoyear(today()), week == isoweek(today())-1)
-}
+# if(isoweek(today()) == 1 ) {
+#   ## If generated for report happening this current week
+#   datanow <- data %>% filter(year == (isoyear(today()) - 1 ), week == 52)
+# } else {
+#   datanow <- data %>% filter(year == isoyear(today()), week == isoweek(today())-1)
+# }
 
+datanow <- data |> filter(year+week/100 == max(year+week/100))
 
 ## Clean duplicated... dangerous
 # datanow2 <- datanow|>
