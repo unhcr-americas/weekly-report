@@ -8,10 +8,9 @@ author:
     email: alvoc@unhcr.org
 output:
   unhcrdown::paged_report:
-    front_img: cover_grey.svg
+    # front_img: cover_grey.svg
+    front_img: "https://raw.githubusercontent.com/unhcr-americas/weekly-report/main/cover_grey.svg"
     number_sections: true
-    self_contained: false
-    copy_resources: true
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
@@ -63,7 +62,8 @@ data <-
 
 data <- 
   data %>% 
-  filter(is.na(`grRepOp/exReport`) | `grRepOp/exReport`=="" | `grRepOp/exReport`=="no") %>% # remove extraordinary reports from the dataset
+  filter(is.na(`grRepOp/exReport`) | `grRepOp/exReport`=="" | `grRepOp/exReport`=="no",
+         is.na(`_validation_status`$uid)) %>% # remove extraordinary reports from the dataset
   select(id = `_id`,
          year = `_submission_time`,
          week = `grRepOp/week`,
@@ -178,5 +178,4 @@ purrr::walk(levels(fct_drop(datanow2$region)), ~render_region(datanow2, .))
 
 ```{r}
 if( nrow(datanow2) < nrow(datanow)) { cat("Warning: it seems duplicated report were send to the server. Revise the data in the server")}
-
 ```
