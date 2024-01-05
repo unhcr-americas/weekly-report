@@ -10,6 +10,7 @@ output:
   unhcrdown::paged_report:
     front_img: https://www.unhcr.org/sites/default/files/legacy-images/632dc5f83.jpg
     number_sections: true
+    self_contained: false
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
