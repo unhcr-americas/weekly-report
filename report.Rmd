@@ -7,9 +7,14 @@ author:
     affiliation: Reporting Officer
     email: alvoc@unhcr.org
 output:
-  unhcrdown::paged_report:
-    front_img: !expr here::here("cover_grey.svg")
-    number_sections: true
+  pagedown::html_paged:
+    # put the path to your cover image
+    front_cover: cover_grey.svg
+    toc: true
+    toc_depth: 2
+    css: resources/paged.css
+    includes:
+        after_body: resources/back_paged.html
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
