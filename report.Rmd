@@ -8,7 +8,7 @@ author:
     email: alvoc@unhcr.org
 output:
   unhcrdown::paged_report:
-    front_img: resources/cover_grey.svg
+    front_img: cover_grey.svg
     number_sections: true
     self_contained: true
 # Set  toc title, default none
