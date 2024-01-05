@@ -5121,16 +5121,22 @@
       "checksum": "7b07170a08080194117a4580f265785e"
     },
     "report.html": {
-      "checksum": "0851d3496af74ac78183bc2ae1850277"
+      "checksum": "773d202cd802bcaf040e4f6e23f61d0a"
     },
     "report.Rmd": {
-      "checksum": "55c253f92c41b949282bdc3873a81869"
+      "checksum": "0232169ab34a3d130267e9ed74352fa6"
     },
     "resources/back-cover.svg": {
       "checksum": "8ad0c5d49649d7cd39772b8add8b2a64"
     },
     "resources/back_paged.html": {
       "checksum": "df422ba4ed92d5d765714499890e9bb0"
+    },
+    "resources/cover_grey.jpg": {
+      "checksum": "f10960e00da68ca949965cd257cddec9"
+    },
+    "resources/cover_grey.svg": {
+      "checksum": "a3c57ebabbfa9df7328d17c61b7fda8a"
     },
     "resources/header-ruler-left.svg": {
       "checksum": "53b279a6a655a11648ec4da2a488e783"
