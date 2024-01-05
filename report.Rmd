@@ -10,7 +10,8 @@ output:
   unhcrdown::paged_report:
     front_img: cover_grey.svg
     number_sections: true
-    self_contained: true
+    self_contained: false
+    copy_resources: true
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
