@@ -3,9 +3,9 @@ title: Americas Weekly Highlights
 subtitle: WEEK `r lubridate::isoweek(lubridate::today()-lubridate::weeks(1))` / `r lubridate::isoyear(lubridate::today()-lubridate::weeks(1))`
 date: Regional Bureau for the Americas
 author:
-  - name: Carla Calvo Manosa
+  - name: Salvador Santiesteban Merlos
     affiliation: Reporting Officer
-    email: alvoc@unhcr.org
+    email: santiest@unhcr.org
 output:
   pagedown::html_paged:
     # put the path to your cover image
