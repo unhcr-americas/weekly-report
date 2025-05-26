@@ -11,14 +11,14 @@ output:
     # put the path to your cover image
     front_cover: cover_grey.svg
     toc: true
-    toc_depth: 2
+    toc_depth: 2 
     css: resources/paged.css
     includes:
-        after_body: resources/back_paged.html
+      after_body: resources/back_paged.html
 # Set  toc title, default none
 toc-title: Contents
 # Change to true to include list of tables
-lot: false
+lot: false 
 # Set lot title, default: "List of Tables"
 lot-title: "Tables"
 # Change to true to include list of figures
@@ -42,144 +42,650 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
                       dpi = 300)
 
 library(tidyverse)
-library(lubridate)
 library(httr)
 library(ragg)
 library(showtext)
 library(unhcrdesign)
-#knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(knitr) 
+library(janitor) 
+library(purrr)
 
+# Define keywords for the index
+index_keywords <- c("expulsion", "removal", "displacement", "repatriation", 
+                    "refoulement", "return", "movement", "risk", 
+                    "deported", "emergency", "onward", "reverse")
+index_keywords_lower <- tolower(index_keywords) 
+
+# Global environment to store keyword references
+if (!exists("keyword_references_env", envir = .GlobalEnv)) {
+  assign("keyword_references_env", new.env(parent = emptyenv()), envir = .GlobalEnv)
+  keyword_references_env$data <- list()
+}
+
+# Function to generate a Pandoc-like ID from a title string
+generate_pandoc_id <- function(title) {
+  if (is.null(title) || title == "") return(paste0("id-", digest::digest(runif(1))))
+  id <- tolower(title)
+  id <- gsub("\\s+", "-", id)
+  id <- stringi::stri_trans_general(id, "latin-ascii")
+  id <- gsub("[^a-z0-9_.:\\-]+", "", id)
+  id <- gsub("^-+|-+$", "", id)
+  if (nchar(id) == 0) return(paste0("id-", digest::digest(runif(1))))
+  return(id)
+}
+
+transform_context_categories <- function(input_text) {
+  if (is.na(input_text)) {
+    return(NA_character_)
+  }
+  items <- stringr::str_split(stringr::str_squish(input_text), " ")[[1]]
+  items <- items[nzchar(items)] 
+  if (length(items) == 0) {
+    return("") 
+  }
+  mapped_items <- purrr::map_chr(
+    items,
+    ~ dplyr::recode(.x, 
+      "political" = "Political environment",
+      "legal_developments" = "Legal developments",
+      "multi_bi_lateral_cooperation" = "Multilateral/bilateral cooperation",
+      "change_migration_flows" = "Change in migration patterns/flows",
+      "climate_hazards" = "Climate hazards",
+      "civil_unrest" = "Civil unrest",
+      "other" = "Other",
+      .default = .x
+    )
+  )
+  stringr::str_c(mapped_items, collapse = "; ")
+}
+
+
+transform_poptrends_categories <- function(input_text) {
+  if (is.na(input_text)) {
+    return(NA_character_)
+  }
+  items <- stringr::str_split(stringr::str_squish(input_text), " ")[[1]]
+  items <- items[nzchar(items)]
+  if (length(items) == 0) {
+    return("") 
+  }
+  mapped_items <- purrr::map_chr(
+    items,
+    ~ dplyr::recode(.x, 
+      "onward" = "Onward movement",
+      "reverse" = "Reverse flow",
+      "deportation" = "Deportation",
+      "internal" = "Internal displacement",
+      "pendular" = "Pendular movement",
+      "other" = "Other",
+      .default = .x
+    )
+  )
+  stringr::str_c(mapped_items, collapse = "; ")
+}
+
+transform_poptrends_categories <- function(input_text) {
+  if (is.na(input_text)) {
+    return(NA_character_)
+  }
+  items <- stringr::str_split(stringr::str_squish(input_text), " ")[[1]]
+  items <- items[nzchar(items)]
+  if (length(items) == 0) {
+    return("") 
+  }
+  mapped_items <- purrr::map_chr(
+    items,
+    ~ dplyr::recode(.x, 
+      "onward" = "Onward movement",
+      "reverse" = "Reverse flow",
+      "deportation" = "Deportation",
+      "internal" = "Internal displacement",
+      "pendular" = "Pendular movement",
+      "other" = "Other",
+      .default = .x
+    )
+  )
+  stringr::str_c(mapped_items, collapse = "; ")
+}
+
+
+
+transform_protection_categories <- function(input_text) {
+  if (is.na(input_text)) {
+    return(NA_character_)
+  }
+  items <- stringr::str_split(stringr::str_squish(input_text), " ")[[1]]
+  items <- items[nzchar(items)]
+  if (length(items) == 0) {
+    return("") 
+  }
+  mapped_items <- purrr::map_chr(
+    items,
+    ~ dplyr::recode(.x, 
+      "access_territory" = "Access to territory and non refoulement",
+      "asylum_procedures" = "Asylum procedures",
+      "alt_legal_stay" = "Alternative legal stay arrangements",
+      "access_rights_services" = "Access to rights and services",
+      "detention_monit" = "Detention monitoring",
+      "returns" = "Returns",
+      "conflict" = "Conflict, violence and internal displacement",
+      "gbv" = "Prevention and response to GBV",
+      "child_protection" = "Child Protection",
+      "other" = "Other",
+      .default = .x
+    )
+  )
+  stringr::str_c(mapped_items, collapse = "; ")
+}
+
+
+transform_operation_categories <- function(input_text) {
+  if (is.na(input_text)) {
+    return(NA_character_)
+  }
+  items <- stringr::str_split(stringr::str_squish(input_text), " ")[[1]]
+  items <- items[nzchar(items)]
+  if (length(items) == 0) {
+    return("") 
+  }
+  mapped_items <- purrr::map_chr(
+    items,
+    ~ dplyr::recode(.x, 
+       "businessCon" = "Business continuity",
+      "government" = "Government",
+      "resourceProg" = "Resource Allocation",
+      "programme" = "Programme Management (partners and direct implementation)",
+      "resourceMob" = "Resource Mobilization & Donor/External Relations",
+      "staff" = "Staff & Support needs",
+      "supply" = "Supply",
+      "other" = "Other",
+      .default = .x
+    )
+  )
+  stringr::str_c(mapped_items, collapse = "; ")
+}
+
+
+transform_interagency_categories <- function(input_text) {
+  if (is.na(input_text)) {
+    return(NA_character_)
+  }
+  items <- stringr::str_split(stringr::str_squish(input_text), " ")[[1]]
+  items <- items[nzchar(items)]
+  if (length(items) == 0) {
+    return("") 
+  }
+  mapped_items <- purrr::map_chr(
+    items,
+    ~ dplyr::recode(.x, 
+      "intergov" = "Intergovernmental process (options Cartagena +40, MIRPs, Quito Process, other)",
+      "humanitarian_arch" = "Humanitarian architecture (REDLAC, Protection Cluster, Shelter Cluster, other)",
+      "mixed_mov_coord" = "Mixed movement coordination mechanism (R4V, other)",
+      "unct" = "UNCT",
+      "other" = "Other",
+      .default = .x
+    )
+  )
+  stringr::str_c(mapped_items, collapse = "; ")
+}
 ```
-
-
-
 
 
 ```{r data}
 data <-
-  GET("https://kobo.unhcr.org/api/v2/assets/aLWoR3ZMFogWzChxaX28cP/data.json",
-      add_headers(Authorization = glue::glue("Token {Sys.getenv('KOBO_API_KEY')}"))) %>% 
-  content(as = "text") %>% 
-  jsonlite::fromJSON() %>% 
-  pluck("results") %>% 
+  GET("https://kobo.unhcr.org/api/v2/assets/aESFmGFETFCvknhdSMyKSN/data.json", 
+      add_headers(Authorization = glue::glue("Token {Sys.getenv('KOBO_API_KEY')}"))) |>
+  content(as = "text") |>
+  jsonlite::fromJSON() |>
+  pluck("results") |>
   as_tibble()
 
-data <- 
-  data %>% 
-  filter(is.na(`grRepOp/exReport`) | `grRepOp/exReport`=="" | `grRepOp/exReport`=="no",
-         is.na(`_validation_status`$uid)) %>% # remove extraordinary reports from the dataset
-  select(id = `_id`,
-         year = `_submission_time`,
-         week = `grRepOp/week`,
-         country = `grRepOp/country`,
-         context.narrative = `grContext/conDesGr/context`,
-         context.confidential = `grContext/conDesGr/confContext`,
-         poptrends.narrative = `grPopulationTrends/popDesGr/popTrends`,
-         poptrends.confidential = `grPopulationTrends/popDesGr/confPop`,
-         protection.narrative = `grProtectionConcerns/protecDesGr/protCon`,
-         protection.confidential = `grProtectionConcerns/protecDesGr/confProt`,
-         operations.narrative = `grOperation/opeDesGr/operInfo`,
-         operations.confidential = `grOperation/opeDesGr/confOperation`,
-         interagency.narrative = `grInteragencial/interDesGr/InteragencyInfo`,
-         interagency.confidential = `grInteragencial/interDesGr/confInter`,
-         aob.narrative = `grAoB/aobDesGr/AoBInfo`,
-         aob.confidential = `grAoB/aobDesGr/confAoB`)
 
-data <- 
-  data %>% 
+# Initial cleaning and selection of columns
+processed_data <-
+  data |>
+  filter(is.na(`grRepOp/exReport`) | `grRepOp/exReport`=="" | `grRepOp/exReport`=="no") |> 
+  transmute(id = `_id`,
+            year = `_submission_time`,
+            week = `grRepOp/week`,
+            country = `grRepOp/country`,
+            context.narrative = `grContext/conDesGr/context`,
+            context.links = str_replace_all(`grContext/conDesGr/links_context`, "\\s+|,+|;+", "\n"),
+            context.categories = map_chr(`grContext/conDesGr/contextCat`, transform_context_categories),
+            context.confidential = `grContext/conDesGr/confContext`,
+            
+            poptrends.narrative = `grPopulationTrends/popDesGr/popTrends`,
+            poptrends.links = str_replace_all(`grPopulationTrends/popDesGr/links_popTrends`, "\\s+|,+|;+", "\n"),
+            poptrends.categories = map_chr(`grPopulationTrends/popDesGr/popCat`, transform_poptrends_categories),
+            poptrends.figures = `grPopulationTrends/grKeyFigures`, 
+            poptrends.confidential = `grPopulationTrends/popDesGr/confPop`,
+            
+            protection.narrative = `grProtectionConcerns/protecDesGr/protCon`,
+            protection.links = str_replace_all(`grProtectionConcerns/protecDesGr/links_protection`, "\\s+|,+|;+", "\n"),
+            protection.categories = map_chr(`grProtectionConcerns/protecDesGr/protCat`, transform_protection_categories),
+            protection.confidential = `grProtectionConcerns/protecDesGr/confProt`,
+            
+            operations.narrative = `grOperation/opeDesGr/operInfo`,
+            operations.links = str_replace_all(`grOperation/opeDesGr/links_operations`, "\\s+|,+|;+", "\n"),
+            operations.categories = map_chr(`grOperation/opeDesGr/operCat`, transform_operation_categories),
+            operations.confidential = `grOperation/opeDesGr/confOperation`,
+            
+            interagency.narrative = `grInteragencial/interDesGr/InteragencyInfo`,
+            interagency.categories = map_chr(`grInteragencial/interDesGr/interCat`, transform_interagency_categories),
+            interagency.confidential = `grInteragencial/interDesGr/confInter`,
+            
+            aob.narrative = `grAoB/aobDesGr/AoBInfo`,
+            aob.links = str_replace_all(`grAoB/aobDesGr/links_aob`, "\\s+|,+|;+", "\n"),
+            aob.confidential = `grAoB/aobDesGr/confAoB`) |>
   mutate(week = parse_number(week),
-         year = isoyear(ymd_hms(year)-weeks(1))) %>%
-  pivot_longer(-c(id, year, week, country), names_pattern = "(.+)\\.(.+)", names_to = c("section", "dimension")) %>% 
+         year = isoyear(ymd_hms(year)-weeks(1)))
+
+
+figures_data <- processed_data |>
+  select(id, year, week, country, poptrends.figures) |>
+  rename(figures = poptrends.figures) |>
+  filter(!map_lgl(figures, is.null) & map_int(figures, length) > 0) 
+
+
+pivoted_data <- processed_data |>
+  select(-poptrends.figures) |> 
+  pivot_longer(-c(id, year, week, country), names_pattern = "(.+)\\.(.+)", names_to = c("section", "dimension")) |>
   pivot_wider(names_from = "dimension", values_from = "value")
 
-data <- 
-  data %>% 
+
+data <- pivoted_data |>
+  left_join(figures_data, by = c("id", "year", "week", "country")) |>
   mutate(country = case_when(country == "CostaRica" ~ "Costa Rica",
                              country == "DominicanRepublic" ~ "Dominican Rep.",
                              country == "NorthernCaribbean" ~ "Northern Caribbean",
                              country == "TrinidadTobago" ~ "Trinidad and Tobago",
                              country == "UnitedStates" ~ "United States of America",
                              country == "Bolivia" ~ "Bolivia (Plurinational State of)",
-                             country == "Curaçao" ~ "Curacao ",
+                             country == "Curaçao" ~ "Curacao", 
                              country == "Venezuela" ~ "Venezuela (Bolivarian Republic of)",
                              is.na(country) ~ "The Americas",
                              TRUE ~ country),
-         section = c(aob = "A.O.B", 
-                      context = "Context", 
-                      interagency = "Inter-Agency",
-                      operations = "Operations", 
-                      poptrends = "Population Trends", 
-                      protection = "Protection Concerns")[section],
-         narrative = replace_na(narrative, "Nothing to report."))
-
-data <- 
-  data %>% 
-  left_join(popdata::pd_countries %>% select(country = name, region)) %>% 
+         section = c(aob = "A.O.B",
+                     context = "Context",
+                     interagency = "Inter-Agency",
+                     operations = "Operations",
+                     poptrends = "Population Trends",
+                     protection = "Protection Concerns")[section],
+         narrative = replace_na(narrative, "Nothing to report.")) |>
+  left_join(popdata::pd_countries |> select(country = name, region), by = "country") |>
   mutate(region = case_when(country == "Northern Caribbean" ~ "Caribbean",
+                            country == "Curacao" ~ "Caribbean",
                             country == "The Americas" ~ "Regional Overview",
-                            TRUE ~ region))
-
-data <- 
-  data %>% 
-  mutate(region = region %>% factor() %>% fct_relevel("Regional Overview", after = 0),
+                            TRUE ~ region),
+         region = if_else(is.na(region) & country != "The Americas", "Unknown Region", region)) |>
+  mutate(region = region |> factor() |> fct_relevel("Regional Overview", after = 0),
          country = factor(country),
          section = factor(section, levels = c("Context", "Population Trends", "Protection Concerns",
                                               "Operations", "Inter-Agency", "A.O.B")))
 ```
 
-```{r renderers}
-render_section <- function(data, .section) {
-  cat(glue::glue("### {.section}"), sep = "\n")
-  data <- data %>% filter(section == .section)
-  if (any(!is.na(data$confidential) & data$confidential == "yes"))
-    cat("<strong style='color: #EF4A60'>CONFIDENTIAL</strong>", sep = "\n")
-  cat("\n")
-  cat(data$narrative, sep = "\n")
-  cat("\n")
+```{r renderers_modified}
+
+render_section <- function(data_param, section_title_arg, country_title_arg, region_title_arg) {
+  data_section <- data_param |> filter(section == section_title_arg)
+  
+  has_narrative_content <- any(!is.na(data_section$narrative) & data_section$narrative != "" & data_section$narrative != "Nothing to report.")
+  
+  unique_section_id_for_link <- generate_pandoc_id(paste(country_title_arg, section_title_arg, sep = "-"))
+
+  if (has_narrative_content && !is.null(data_section$narrative) && data_section$narrative != "") {
+    narrative_text_lower <- tolower(data_section$narrative)
+    temp_keyword_data <- keyword_references_env$data 
+    
+    for (i in seq_along(index_keywords_lower)) {
+      keyword_l <- index_keywords_lower[i]
+      original_keyword <- index_keywords[i] 
+
+      if (str_detect(narrative_text_lower, fixed(keyword_l))) {
+        entry <- list(
+          section_title = section_title_arg, 
+          country_title = country_title_arg, 
+          region_title = region_title_arg, 
+          id = unique_section_id_for_link 
+        )
+        
+        if (!original_keyword %in% names(temp_keyword_data)) {
+          temp_keyword_data[[original_keyword]] <- list()
+        }
+        
+        is_duplicate_entry <- FALSE
+        if (length(temp_keyword_data[[original_keyword]]) > 0) {
+          for (existing_entry_item in temp_keyword_data[[original_keyword]]) {
+            if (identical(existing_entry_item$id, entry$id)) { 
+              is_duplicate_entry <- TRUE
+              break
+            }
+          }
+        }
+        if (!is_duplicate_entry) {
+          temp_keyword_data[[original_keyword]] <- append(temp_keyword_data[[original_keyword]], list(entry))
+        }
+      }
+    }
+    keyword_references_env$data <- temp_keyword_data 
+  }
+
+  has_figures_data <- section_title_arg == "Population Trends" && "figures" %in% colnames(data_section) &&
+    is.list(data_section$figures) && length(data_section$figures) > 0 &&
+    any(map_lgl(data_section$figures, ~!is.null(.) && nrow(.) > 0))
+  
+  if (has_narrative_content || has_figures_data) {
+    cat(glue::glue("### {section_title_arg} {{#{unique_section_id_for_link}}}"), sep = "\n") 
+    cat("\n") 
+    
+    if (any(!is.na(data_section$confidential) & data_section$confidential == "yes")) {
+      cat("<strong style='color: #EF4A60'>CONFIDENTIAL</strong>", sep = "\n")
+      cat("\n") 
+    }
+    
+    if (has_narrative_content) {
+      cat(data_section$narrative, sep = "\n")
+      cat("\n") 
+    }
+    
+    if (has_figures_data) {
+      cat("#### Key Figures\n\n") 
+      all_figures_df <- tryCatch({
+        bind_rows(data_section$figures)
+      }, error = function(e) {
+        warning(paste("Could not combine figures data frames for section", section_title_arg, ":", e$message))
+        NULL 
+      })
+      
+      if (!is.null(all_figures_df) && nrow(all_figures_df) > 0) {
+        cleaned_figures_df <- all_figures_df |> janitor::clean_names()
+        
+        # Ensure all required columns for route calculation are present, fill with NA if not
+        required_cols_for_route <- c("gr_population_trends_gr_key_figures_country_origin", 
+                                     "gr_population_trends_gr_key_figures_country_destination", 
+                                     "gr_population_trends_gr_key_figures_movement_type")
+        
+        for (col_name in required_cols_for_route) {
+          if (!col_name %in% names(cleaned_figures_df)) {
+            cleaned_figures_df[[col_name]] <- NA_character_ 
+          }
+        }
+        
+        current_gr_rep_op_country <- country_title_arg 
+
+        normalize_country_name <- function(name_input) {
+          processed_name <- NA_character_ 
+
+          if (is.list(name_input)) {
+            if (length(name_input) > 0 && !is.null(name_input[[1]]) && length(name_input[[1]]) > 0) {
+              processed_name <- as.character(name_input[[1]][1]) 
+            }
+          } else if (is.vector(name_input) && length(name_input) > 1) {
+            first_valid <- name_input[!is.na(name_input) & name_input != ""][1]
+            if (length(first_valid) > 0 && !is.na(first_valid)) { 
+              processed_name <- as.character(first_valid)
+            }
+          } else if (length(name_input) == 1) {
+            processed_name <- as.character(name_input)
+          } else if (is.null(name_input)) {
+             processed_name <- NA_character_
+          }
+
+          if (is.null(processed_name) || is.na(processed_name) || processed_name == "") {
+            return(NA_character_)
+          }
+          
+          tolower(trimws(processed_name))
+        }
+        
+        current_gr_rep_op_country_normalized <- normalize_country_name(current_gr_rep_op_country)
+        current_gr_rep_op_country_for_paste <- ifelse(is.na(current_gr_rep_op_country) || current_gr_rep_op_country == "", "Unknown", current_gr_rep_op_country)
+        
+        if (all(required_cols_for_route %in% names(cleaned_figures_df))) {
+          cleaned_figures_df <- cleaned_figures_df |>
+             rowwise() |>
+            mutate(
+              gr_population_trends_gr_key_figures_country_origin = as.character(gr_population_trends_gr_key_figures_country_origin),
+              gr_population_trends_gr_key_figures_country_destination = as.character(gr_population_trends_gr_key_figures_country_destination),
+              gr_population_trends_gr_key_figures_movement_type = as.character(gr_population_trends_gr_key_figures_movement_type),
+
+              gr_population_trends_gr_key_figures_movement_type = dplyr::recode(tolower(gr_population_trends_gr_key_figures_movement_type),
+                                                                                "onward" = "Onward",
+                                                                                "reverse" = "Reverse",
+                                                                                "deportation" = "Deportation",
+                                                                                "internal" = "Internal displacement",
+                                                                                "pendular" = "Pendular",
+                                                                                "other" = "Other",
+                                                                                .default = gr_population_trends_gr_key_figures_movement_type 
+                                                                                ),
+
+              coming_from_display = ifelse(is.na(gr_population_trends_gr_key_figures_country_origin) | gr_population_trends_gr_key_figures_country_origin == "", "Unknown", gr_population_trends_gr_key_figures_country_origin),
+              next_country_display = ifelse(is.na(gr_population_trends_gr_key_figures_country_destination) | gr_population_trends_gr_key_figures_country_destination == "", "Unknown", gr_population_trends_gr_key_figures_country_destination),
+              
+              coming_from_normalized = normalize_country_name(gr_population_trends_gr_key_figures_country_origin),
+              next_country_normalized = normalize_country_name(gr_population_trends_gr_key_figures_country_destination),
+              movement_type_lower = tolower(gr_population_trends_gr_key_figures_movement_type),
+
+              Route = case_when(
+                movement_type_lower == "deportation" ~ 
+                  paste0(coming_from_display, " -> ", current_gr_rep_op_country_for_paste),
+                
+                !is.na(coming_from_normalized) & !is.na(current_gr_rep_op_country_normalized) & coming_from_normalized == current_gr_rep_op_country_normalized & next_country_display != "Unknown" ~
+                  paste0(current_gr_rep_op_country_for_paste, " -> ", next_country_display),
+                
+                next_country_display == "Unknown" ~ 
+                  coming_from_display, 
+                
+                !is.na(next_country_normalized) & !is.na(current_gr_rep_op_country_normalized) & next_country_normalized == current_gr_rep_op_country_normalized ~ 
+                  paste0(coming_from_display, " -> ", next_country_display),
+                
+                TRUE ~ 
+                  paste0(coming_from_display, " -> ", current_gr_rep_op_country_for_paste, " -> ", next_country_display)
+              )
+            ) |>
+            ungroup() 
+
+          final_col_names_map <- c(
+            "gr_population_trends_gr_key_figures_date_mov" = "Date",
+            "gr_population_trends_gr_key_figures_movement_type" = "Movement Type",
+            "Route" = "Route",
+            "gr_population_trends_gr_key_figures_nationality_pop" = "Nationality",
+            "gr_population_trends_gr_key_figures_total_pop" = "Total Pop."
+          )
+          
+          cols_to_display_janitor_names <- c(
+            "gr_population_trends_gr_key_figures_date_mov",
+            "gr_population_trends_gr_key_figures_movement_type",
+            "Route",
+            "gr_population_trends_gr_key_figures_nationality_pop",
+            "gr_population_trends_gr_key_figures_total_pop"
+          )
+          
+          existing_cols_to_display <- cols_to_display_janitor_names[cols_to_display_janitor_names %in% names(cleaned_figures_df)]
+          
+          all_figures_df_renamed <- cleaned_figures_df |>
+            select(all_of(existing_cols_to_display)) |>
+            rename_with(~recode(., !!!final_col_names_map[. %in% names(final_col_names_map)]), .cols = any_of(names(final_col_names_map)))
+
+        } 
+        print(knitr::kable(all_figures_df_renamed, format = "markdown",
+                           col.names = names(all_figures_df_renamed)))
+        cat("\n") 
+      } else {
+        cat("No key figures reported for this section.\n")
+        cat("\n")
+      }
+    }
+    
+    has_links <- any(!is.na(data_section$links) & data_section$links != "")
+    if (has_links) {
+      cat("**Links**\n", sep = "\n")
+      cat(data_section$links, sep = "\n")
+      cat("\n") 
+    }
+    
+    has_categories <- any(!is.na(data_section$categories) & data_section$categories != "")
+    if (has_categories) {
+      cat("**Categories:** ")
+      cat(data_section$categories, sep = "\n") 
+      cat("\n") 
+    }
+  }
 }
 
-render_country <- function(data, .country) {
-  cat(glue::glue("## {.country}"), sep = "\n")
-  data <- data %>% filter(country == .country)
-  walk(levels(fct_drop(data$section)), ~render_section(data, .))
+render_country <- function(data_param, country_title_arg, region_title_arg) {
+  data_country <- data_param |> filter(country == country_title_arg)
+  country_id <- generate_pandoc_id(country_title_arg) 
+
+  has_country_content <- any(map_lgl(levels(fct_drop(data_country$section)), function(section_name) {
+    data_section_check <- data_country |> filter(section == section_name)
+    has_narrative_check <- any(!is.na(data_section_check$narrative) & data_section_check$narrative != "" & data_section_check$narrative != "Nothing to report.")
+    has_figures_check <- section_name == "Population Trends" && "figures" %in% colnames(data_section_check) &&
+      is.list(data_section_check$figures) && length(data_section_check$figures) > 0 &&
+      any(map_lgl(data_section_check$figures, ~!is.null(.) && nrow(.) > 0))
+    has_narrative_check || has_figures_check
+  }))
+  
+  if (has_country_content) {
+    cat(glue::glue("## {country_title_arg} {{#{country_id}}}"), sep = "\n") 
+    cat("\n") 
+    walk(levels(fct_drop(data_country$section)), 
+         ~render_section(data_country, ., country_title_arg, region_title_arg))
+  }
 }
 
-render_region <- function(data, .region) {
-  cat(glue::glue("# {.region}"), sep = "\n")
-  data <- data %>% filter(region == .region)
-  walk(levels(fct_drop(data$country)), ~render_country(data, .))
+render_region <- function(data_param, region_title_arg) {
+  data_region <- data_param |> filter(region == region_title_arg)
+  region_id <- generate_pandoc_id(region_title_arg) 
+
+  has_region_content <- any(map_lgl(levels(fct_drop(data_region$country)), function(country_name) {
+    data_country_check <- data_region |> filter(country == country_name)
+    any(map_lgl(levels(fct_drop(data_country_check$section)), function(section_name) {
+      data_section_check <- data_country_check |> filter(section == section_name)
+      has_narrative_check <- any(!is.na(data_section_check$narrative) & data_section_check$narrative != "" & data_section_check$narrative != "Nothing to report.")
+      has_figures_check <- section_name == "Population Trends" && "figures" %in% colnames(data_section_check) &&
+        is.list(data_section_check$figures) && length(data_section_check$figures) > 0 &&
+        any(map_lgl(data_section_check$figures, ~!is.null(.) && nrow(.) > 0))
+      has_narrative_check || has_figures_check
+    }))
+  }))
+  
+  if (has_region_content) {
+    cat(glue::glue("# {region_title_arg} {{#{region_id}}}"), sep = "\n") 
+    cat("\n")
+    walk(levels(fct_drop(data_region$country)), 
+         ~render_country(data_region, ., region_title_arg))
+  }
 }
 ```
 
 ```{r datafilter}
-## If generated for report happening after this current week
-# isoweek(ymd("2012-03-26"))
-
-# if(isoweek(today()) == 1 ) {
-#   ## If generated for report happening this current week
-#   datanow <- data %>% filter(year == (isoyear(today()) - 1 ), week == 52)
-# } else {
-#   datanow <- data %>% filter(year == isoyear(today()), week == isoweek(today())-1)
-# }
-
-datanow <- data |> filter(year+week/100 == max(year+week/100))
-
-## Clean duplicated... dangerous
-# datanow2 <- datanow|>
-#            group_by(country, section) |>
-#             filter(duplicated(country, section) | n()==1) |>
-#             ungroup()
-
-datanow2 <- datanow [!duplicated(datanow[c(4,5)]),]
-
+datanow <- data |> filter(year+week/100 == max(year+week/100, na.rm = TRUE)) 
+datanow2 <- datanow[!duplicated(datanow[c("country", "section")]),] 
 ```
 
-
-```{r pipeline, results='asis'}
+```{r pipeline_modified, results='asis'}
+# Clear previous index data at the beginning of each knit, if any exists
+keyword_references_env$data <- list()
 purrr::walk(levels(fct_drop(datanow2$region)), ~render_region(datanow2, .))
 ```
 
+```{r generate_index, results='asis', echo=FALSE}
+cat("\\newpage\n")
+cat("# Index {-}\n\n") 
+cat("<div id=\"custom-index\">\n")
 
-```{r}
-if( nrow(datanow2) < nrow(datanow)) { cat("Warning: it seems duplicated report were send to the server. Revise the data in the server")}
+collected_keyword_data <- keyword_references_env$data
+
+if (length(collected_keyword_data) == 0) {
+  cat("No keywords found in the document for indexing.\n")
+} else {
+  sorted_keywords_for_index <- sort(names(collected_keyword_data))
+  
+  for (keyword_item in sorted_keywords_for_index) {
+    display_keyword_item <- str_to_sentence(keyword_item)
+    
+    references_for_keyword <- collected_keyword_data[[keyword_item]]
+    
+    if (length(references_for_keyword) > 0) {
+      references_for_keyword <- references_for_keyword[order(sapply(references_for_keyword, function(x) paste(x$country_title, x$section_title)))]
+      
+      links_string_parts <- c()
+      for (ref_detail_final in references_for_keyword) {
+        if (!is.null(ref_detail_final$id) && ref_detail_final$id != "") {
+          country_display_name <- gsub("\\s*\\([^)]*\\)", "", ref_detail_final$country_title)
+          country_display_name <- trimws(country_display_name)
+          link_display_text <- glue::glue("{country_display_name} - {ref_detail_final$section_title}")
+          links_string_parts <- c(links_string_parts, paste0("[", link_display_text, "](#", ref_detail_final$id, ")"))
+        }
+      }
+      
+      if (length(links_string_parts) > 0) {
+        cat(paste0("* **", display_keyword_item, ":** ", paste(links_string_parts, collapse = " ; "), "\n"))
+      } else {
+        cat(paste0("* **", display_keyword_item, ":** (No occurrences recorded)\n"))
+      }
+      
+    } else {
+      cat(paste0("* **", display_keyword_item, ":** (No occurrences recorded)\n"))
+    }
+  }
+}
+cat("</div>\n") 
+```
+
+```{r check_duplicates_warning}
+# Check for potential duplicated reports based on the difference in row counts
+if( nrow(datanow2) < nrow(datanow)) {
+  warning("Warning: it seems duplicated report were send to the server. Revise the data in the server")
+}
+```
+
+
+```{r page_break_css_final, results='asis'}
+# Add CSS to prevent page breaks inside tables
+# Add CSS to remove page numbers from index
+cat("
+<style>
+table {
+  page-break-inside: avoid !important;
+}
+tbody {
+  page-break-inside: avoid !important;
+}
+tr {
+  page-break-inside: avoid !important;
+}
+
+/* Table of Contents rules */
+nav#TOC li,
+div#toc li,
+.toc li {
+  page-break-inside: avoid;
+}
+
+#custom-index {
+  font-size: 7.5pt; 
+  line-height: 1.1; 
+}
+
+#custom-index > ul { 
+  padding-left: 0;  
+  list-style-type: none; 
+  margin-top: 0;
+}
+
+#custom-index > ul > li {
+  padding-bottom: 0.1em; 
+  margin-bottom: 0.1em; 
+}
+
+/* Custom Index rules to remove page numbers from links */
+#custom-index a[href^=\"#\"]::after {
+  content: \"\" !important;
+  padding-left: 0 !important;
+  display: none !important;
+}
+</style>
+")
 ```
