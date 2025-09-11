@@ -303,6 +303,8 @@ data <- pivoted_data |>
                              country == "Bolivia" ~ "Bolivia (Plurinational State of)",
                              country == "Curaçao" ~ "Curacao",
                              country == "Venezuela" ~ "Venezuela (Bolivarian Republic of)",
+                             country == "CaribbeanIsland" ~ "Caribbean Island",
+                             country == "guy_nic_sur" ~ "Guyana, Nicaragua and Suriname",
                              is.na(country) ~ "The Americas",
                              TRUE ~ country),
          section = c(aob = "A.O.B",
@@ -314,7 +316,9 @@ data <- pivoted_data |>
          narrative = replace_na(narrative, "Nothing to report.")) |>
   left_join(popdata::pd_countries |> select(country = name, region), by = "country") |>
   mutate(region = case_when(country == "Northern Caribbean" ~ "Caribbean",
+                            country == "Caribbean Island" ~ "Caribbean",
                             country == "Curacao" ~ "Caribbean",
+                            country == "Guyana, Nicaragua and Suriname" ~ "Central America",
                             country == "The Americas" ~ "Regional Overview",
                             TRUE ~ region),
          region = if_else(is.na(region) & country != "The Americas", "Unknown Region", region)) |>
